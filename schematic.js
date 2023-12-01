@@ -6,20 +6,20 @@ const fileRead = () => `fs.readFileSync(${dirname()}/input.txt\`, { encoding: "u
 const fileReadExample = () => `fs.readFileSync(${dirname()}/example.txt\`, { encoding: "utf-8" })`;
 
 const generateTestForInput = () => `test("should log the result", () => {
-  const input = ${fileRead()};
+    const input = ${fileRead()};
 
-  const result = testing(input);
-  console.log(result)
-});`;
+    const result = testing(input);
+    console.log(result);
+  });`;
 
 const generateTestForExampleInput = () => `test("should pass with example input", () => {
-  const input = ${fileReadExample()};
-  const output = 0;
+    const input = ${fileReadExample()};
+    const output = 0;
 
-  const result = testing(input);
+    const result = testing(input);
 
-  expect(result).toStrictEqual(output);
-});`;
+    expect(result).toStrictEqual(output);
+  });`;
 
 function generateBoilerplateFiles(folderName) {
   const folderPath = path.join(__dirname, `src/${folderName}`);
@@ -31,13 +31,14 @@ function generateBoilerplateFiles(folderName) {
 }`;
 
   const testFilePath = path.join(folderPath, "index.test.ts");
-  const testFileContent = `import { describe, expect, test } from 'vitest';
-import fs from 'fs'
-import testing from '.';
+  const testFileContent = `import { describe, expect, test } from "vitest";
+import fs from "fs";
+import testing from ".";
   
-describe('${folderName}', () => {
-${generateTestForExampleInput()}
-${generateTestForInput()}
+describe("${folderName}", () => {
+  ${generateTestForExampleInput()}
+
+  ${generateTestForInput()}
 });
 `;
 
