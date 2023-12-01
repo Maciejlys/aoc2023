@@ -7,16 +7,14 @@ const fileReadExample = () => `fs.readFileSync(${dirname()}/example.txt\`, { enc
 
 const generateTestForInput = () => `test("should log the result", () => {
   const input = ${fileRead()};
-  const output = 55017;
 
   const result = testing(input);
-
-  expect(result).toStrictEqual(output);
+  console.log(result)
 });`;
 
 const generateTestForExampleInput = () => `test("should pass with example input", () => {
   const input = ${fileReadExample()};
-  const output = 55017;
+  const output = 0;
 
   const result = testing(input);
 
