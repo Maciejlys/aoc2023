@@ -36,12 +36,9 @@ const findLastNumber = (line: string) => {
   return findLastNumber(line.substring(0, line.length - 1));
 };
 
-export default function part2(input: string) {
-  const lines: string[] = input.split("\n");
-  let sum = 0;
-  lines.forEach((line) => {
-    sum += Number(findFirstNumber(line) + findLastNumber(line));
-  });
+const part2 = (input: string) =>
+  input
+    .split("\n")
+    .reduce((acc, curr) => acc + Number(findFirstNumber(curr) + findLastNumber(curr)), 0);
 
-  return sum;
-}
+export default part2;
