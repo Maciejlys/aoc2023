@@ -5,7 +5,7 @@ const dirname = () => "`${__dirname}";
 const fileRead = () => `fs.readFileSync(${dirname()}/input.txt\`, { encoding: "utf-8" })`;
 const fileReadExample = () => `fs.readFileSync(${dirname()}/example.txt\`, { encoding: "utf-8" })`;
 
-const generateTestForInput = () => `test("should log the result", () => {
+const generateTestForInput = () => `test.skip("should log the result", () => {
     const input = ${fileRead()};
 
     const result = testing(input);
