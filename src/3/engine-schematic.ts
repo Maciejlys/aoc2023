@@ -99,11 +99,9 @@ export class EngineSchematic {
   }
 
   calculateSumOfNumbersAdjacentToSymbol() {
-    this.numbersPositions.forEach((numberPos) => {
-      if (numberPos.isSymbolAdjacent) {
-        this.sumOfNumbersAdjacentToSymbol += numberPos.number;
-      }
-    });
+    this.sumOfNumbersAdjacentToSymbol = this.numbersPositions
+      .filter((pos) => pos.isSymbolAdjacent)
+      .reduce((acc, curr) => acc + curr.number, 0);
   }
 
   log() {
