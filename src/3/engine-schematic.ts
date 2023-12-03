@@ -64,14 +64,13 @@ export class EngineSchematic {
     this.numbersPositions.forEach((numberPos) => {
       adjacentOffsets.forEach((pos) => {
         const [ioffset, joffset] = pos;
-        numberPos.j.some((jpos) => {
+        numberPos.j.forEach((jpos) => {
           const pos1 = numberPos.i + ioffset;
           const pos2 = jpos + joffset;
 
-          if (this.isInBoundary(pos1, pos2)) {
-            if (isSymbol(this.schematic[pos1][pos2])) {
-              numberPos.isSymbolAdjacent = true;
-            }
+          if (this.isInBoundary(pos1, pos2) && isSymbol(this.schematic[pos1][pos2])) {
+            numberPos.isSymbolAdjacent = true;
+
             if (this.schematic[pos1][pos2] === "*") {
               numberPos.gearPos = {
                 i: pos1,
