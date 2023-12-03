@@ -1,6 +1,6 @@
 import { isNumber, isSymbol } from "./utils";
 
-type NumberPos = {
+type NumberInfo = {
   number: number;
   i: number;
   j: number[];
@@ -21,7 +21,7 @@ const adjacentOffsets = [
 
 export class EngineSchematic {
   private schematic: string[][] = [];
-  private numbersPositions: NumberPos[] = [];
+  private numbersPositions: NumberInfo[] = [];
   private sumOfNumbersAdjacentToSymbol = 0;
   private sumOfGearRatios = 0;
 
