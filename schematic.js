@@ -2,8 +2,9 @@ const path = require("path");
 const fs = require("fs");
 
 const dirname = () => "`${__dirname}";
-const fileRead = () => `fs.readFileSync(${dirname()}/input.txt\`, { encoding: "utf-8" })`;
-const fileReadExample = () => `fs.readFileSync(${dirname()}/example.txt\`, { encoding: "utf-8" })`;
+const fileRead = () => `fs.readFileSync(${dirname()}/../input.txt\`, { encoding: "utf-8" })`;
+const fileReadExample = () =>
+  `fs.readFileSync(${dirname()}/../example.txt\`, { encoding: "utf-8" })`;
 
 const generateTestForInput = () => `test.skip("should log the result", () => {
     const input = ${fileRead()};
@@ -43,8 +44,8 @@ describe("${folderName}", () => {
 `;
 
   const indexFilePath = path.join(folderPath, "index.ts");
-  const inputFilePath = path.join(folderPath, "input.txt");
-  const inputExampleFilePath = path.join(folderPath, "example.txt");
+  const inputFilePath = path.join(folderPath, "../input.txt");
+  const inputExampleFilePath = path.join(folderPath, "../example.txt");
 
   fs.writeFileSync(testFilePath, testFileContent, "utf8");
   fs.writeFileSync(indexFilePath, indexFileContent, "utf8");

@@ -1,3 +1,4 @@
 node_modules
 example.txt
 input.txt
+.DS_Store
