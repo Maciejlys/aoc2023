@@ -1,7 +1,9 @@
 import { parseCardsData, times } from "../utils";
 
-const getScore = ([winning, numbers]: number[][]) =>
-  times(winning, numbers) != 0 ? 2 ** (times(winning, numbers) - 1) : 0;
+const getScore = ([winning, numbers]: number[][]) => {
+  const occurencesAmount = times(winning, numbers);
+  return occurencesAmount != 0 ? 2 ** (occurencesAmount - 1) : 0;
+};
 
 const calculateWinningCards = (input: string): number =>
   parseCardsData(input).reduce((acc, curr) => acc + getScore(curr), 0);
