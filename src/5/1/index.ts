@@ -8,6 +8,8 @@ enum MapNames {
   HumidityToLocation = "humidity-to-location map",
 }
 
+type ArrayTuple = Array<[number, number, number]>;
+
 export const mapSeed = (value: number, [destination, source, length]: [number, number, number]) => {
   if (value >= source && value <= source + length - 1) {
     return value - source + destination;
@@ -26,7 +28,7 @@ const getMaps = (input: string[]) =>
       return acc;
     }, {});
 
-export const mapSeedMultipleMaps = (value: number, ranges: Array<[number, number, number]>) => {
+export const mapSeedMultipleMaps = (value: number, ranges: ArrayTuple) => {
   let result = value;
   for (let index = 0; index < ranges.length; index++) {
     result = mapSeed(value, ranges[index]);
@@ -47,7 +49,7 @@ export default function testing(input: string) {
   seeds.map((seed) => {
     let mapped = seed;
     Object.values(MapNames).forEach((mapName) => {
-      const map: Array<[number, number, number]> = maps[mapName];
+      const map: ArrayTuple = maps[mapName];
       mapped = mapSeedMultipleMaps(mapped, map);
     });
 
