@@ -40,13 +40,10 @@ export const mapSeedMultipleMaps = (value: number, ranges: ArrayTuple) => {
   return value;
 };
 
-export default function testing(input: string) {
-  const parsed = input.split(/\n\n/);
-  const seeds = getSeeds(parsed);
-  const maps = getMaps(parsed);
+const findLowestLocation = (seeds: number[], maps: Object) => {
   const locations: number[] = [];
 
-  seeds.map((seed) => {
+  seeds.forEach((seed) => {
     let mapped = seed;
     Object.values(MapNames).forEach((mapName) => {
       const map: ArrayTuple = maps[mapName];
@@ -57,4 +54,12 @@ export default function testing(input: string) {
   });
 
   return Math.min(...locations);
+};
+
+export default function testing(input: string) {
+  const parsed = input.split(/\n\n/);
+  const seeds = getSeeds(parsed);
+  const maps = getMaps(parsed);
+
+  return findLowestLocation(seeds, maps);
 }
