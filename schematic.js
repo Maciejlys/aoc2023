@@ -11,6 +11,15 @@ const generateTestForInput = () => `test.skip("should log the result", () => {
 
     const result = testing(input);
     console.log(result);
+  });
+
+  test.skip("should pass after refactor", () => {
+    const input = ${fileRead()};
+    const output = 0;
+
+    const result = testing(input);
+
+    expect(result).toStrictEqual(output);
   });`;
 
 const generateTestForExampleInput = () => `test("should pass with example input", () => {
