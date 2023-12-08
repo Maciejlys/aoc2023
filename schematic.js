@@ -36,7 +36,7 @@ function generateBoilerplateFiles(folderName) {
 
   fs.mkdirSync(folderPath);
 
-  const indexFileContent = `export default function testing(input) {
+  const indexFileContent = `export default function testing(input:string) {
   // Your code here
 }`;
 
