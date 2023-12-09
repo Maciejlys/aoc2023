@@ -12,21 +12,21 @@ describe("1/1", () => {
     expect(result).toStrictEqual(output);
   });
 
-  // test("should pass with input", () => {
-  //   const input = fs.readFileSync(`${__dirname}/input.txt`, { encoding: "utf-8" });
+  test("should pass with input", () => {
+    const input = fs.readFileSync(`${__dirname}/input.txt`, { encoding: "utf-8" });
 
-  //   const output = 55017;
+    const output = 55017;
 
-  //   const result = testing(input);
+    const result = testing(input);
 
-  //   expect(result).toStrictEqual(output);
-  // });
+    expect(result).toStrictEqual(output);
+  });
 
-  // test("should log the result", () => {
-  //   const input = fs.readFileSync(`${__dirname}/input.txt`, { encoding: "utf-8" });
+  test.skip("should log the result", () => {
+    const input = fs.readFileSync(`${__dirname}/input.txt`, { encoding: "utf-8" });
 
-  //   const result = testing(input);
+    const result = testing(input);
 
-  //   console.log(result);
-  // });
+    console.log(result);
+  });
 });

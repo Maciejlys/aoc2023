@@ -4,7 +4,7 @@ import testing from ".";
 
 describe("8/1", () => {
   test("should pass with example input", () => {
-    const input = fs.readFileSync(`${__dirname}/example.txt`, { encoding: "utf-8" });
+    const input = fs.readFileSync(`${__dirname}/../example.txt`, { encoding: "utf-8" });
     const output = 2;
 
     const result = testing(input);
