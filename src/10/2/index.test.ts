@@ -14,6 +14,15 @@ describe("10/2", () => {
 
   test.skip("should pass with example input", () => {
     const input = fs.readFileSync(`${__dirname}/example2.txt`, { encoding: "utf-8" });
+    const output = 10;
+
+    const result = testing(input);
+
+    expect(result).toStrictEqual(output);
+  });
+
+  test.skip("should pass with example input", () => {
+    const input = fs.readFileSync(`${__dirname}/example3.txt`, { encoding: "utf-8" });
     const output = 4;
 
     const result = testing(input);
