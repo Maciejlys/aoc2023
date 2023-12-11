@@ -6,6 +6,7 @@ import {
   offsets,
   opposingDirection,
 } from "./utils";
+import fs from "fs";
 
 export class Pipes {
   private map: string[][];
@@ -105,9 +106,34 @@ export class Pipes {
 
   floodTheMap() {
     this.floodEdges();
-    console.log(this.map);
+    let count = 0;
 
-    return 0;
+    for (let i = 0; i < this.map.length; i++) {
+      let flag = false;
+      for (let j = 0; j < this.map[i].length; j++) {
+        if (this.map[i][j] === "1") {
+          if (this.orignal[i][j] != "S") {
+            if (
+              connectedTo[this.orignal[i][j]].some(
+                (dir) => dir === Directions.Down || dir === Directions.Up
+              )
+            ) {
+              flag = !flag;
+            }
+          }
+        } else if (this.map[i][j] != "0" && flag) {
+          count++;
+        }
+      }
+    }
+
+    var file = fs.createWriteStream(`${__dirname}/output.txt`);
+    this.orignal.forEach(function (v) {
+      file.write(v.join(", ") + "\n");
+    });
+    file.end();
+
+    return count;
   }
 
   getFurthestStepsFromAnimal() {

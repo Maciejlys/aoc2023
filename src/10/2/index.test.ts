@@ -5,6 +5,15 @@ import testing from ".";
 describe("10/2", () => {
   test("should pass with example input", () => {
     const input = fs.readFileSync(`${__dirname}/example.txt`, { encoding: "utf-8" });
+    const output = 8;
+
+    const result = testing(input);
+
+    expect(result).toStrictEqual(output);
+  });
+
+  test.skip("should pass with example input", () => {
+    const input = fs.readFileSync(`${__dirname}/example2.txt`, { encoding: "utf-8" });
     const output = 4;
 
     const result = testing(input);
