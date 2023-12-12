@@ -8,48 +8,27 @@ export class Galaxy {
     this.originalMap = input.split(/\n/).map((line) => line.split(""));
   }
 
-  private copyAllDotRows(arr: any[][]) {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].every((element) => element === ".")) {
-        const rowToCopy = [...arr[i]];
-        arr.splice(i + 1, 0, rowToCopy);
-        i++; // Skip the copied row
-      }
-    }
-  }
+  extractGalaxiesPositionAfterExpansion(multiplier = 1) {
+    let emptyRows = this.originalMap.map((row) => row.every((symbol) => symbol === "."));
+    let emptyCols = this.originalMap[0].map((_, colIndex) =>
+      this.originalMap.every((row) => row[colIndex] === ".")
+    );
 
-  private copyAllDotColumns(arr: any[][]): void {
-    let duplicateCols = [];
-    let numCols = arr[0].length;
-
-    for (let i = 0; i < numCols; i++) {
-      if (arr.every((row) => row[i] === ".")) {
-        duplicateCols.push(i);
-      }
-    }
-
-    for (let i = duplicateCols.length - 1; i >= 0; i--) {
-      let idx = duplicateCols[i];
-      for (let row of arr) {
-        row.splice(idx + 1, 0, ".");
-      }
-    }
-  }
-
-  expandTheGalaxy() {
-    this.copyAllDotRows(this.originalMap);
-    this.copyAllDotColumns(this.originalMap);
-    return this;
-  }
-
-  extractGalaxiesPosition() {
     for (let i = 0; i < this.originalMap.length; i++) {
       for (let j = 0; j < this.originalMap[i].length; j++) {
         if (this.originalMap[i][j] === "#") {
-          this.galaxiesPositions.push({ x: i, y: j });
+          let expandableRowsPassed = emptyRows.slice(0, i).filter(Boolean).length;
+          let expandableColsPassed = emptyCols.slice(0, j).filter(Boolean).length;
+
+          this.galaxiesPositions.push({
+            x: i + expandableRowsPassed * multiplier,
+            y: j + expandableColsPassed * multiplier,
+          });
+          console.log(i, j, expandableColsPassed, expandableRowsPassed);
         }
       }
     }
+
     return this;
   }
 

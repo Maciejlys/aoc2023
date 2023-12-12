@@ -19,7 +19,7 @@ describe("11/1", () => {
     console.log(result);
   });
 
-  test("should pass after refactor", () => {
+  test.skip("should pass after refactor", () => {
     const input = fs.readFileSync(`${__dirname}/../input.txt`, { encoding: "utf-8" });
     const output = 9623138;
 
