@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { Directions, isConnected } from "./utils";
+import { Directions } from "../utils/matrix";
+import { isConnected } from "./utils";
 
 describe("isConnected", () => {
   test("should pass", () => {

@@ -1,12 +1,5 @@
-import { writeMatrixToFile } from "../utils/matrixToFile";
-import {
-  Directions,
-  Position,
-  connectedTo,
-  isConnected,
-  offsets,
-  opposingDirection,
-} from "./utils";
+import { connectedTo, isConnected } from "./utils";
+import { offsets, opposingDirection, Directions, Position } from "../utils/matrix";
 
 export class Pipes {
   private map: string[][];

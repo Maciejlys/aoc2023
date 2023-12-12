@@ -6,7 +6,7 @@ export const writeMatrixToFile = (arr: any[][], path: string) => {
     console.log(err);
   });
   arr.forEach(function (v) {
-    file.write(v.join(" ") + "\n");
+    file.write(v.join("") + "\n");
   });
   file.end();
 };
