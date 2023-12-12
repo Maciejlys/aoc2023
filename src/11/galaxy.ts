@@ -8,7 +8,7 @@ export class Galaxy {
     this.originalMap = input.split(/\n/).map((line) => line.split(""));
   }
 
-  extractGalaxiesPositionAfterExpansion(multiplier = 1) {
+  extractGalaxiesPositionAfterExpansion(multiplier = 2) {
     let emptyRows = this.originalMap.map((row) => row.every((symbol) => symbol === "."));
     let emptyCols = this.originalMap[0].map((_, colIndex) =>
       this.originalMap.every((row) => row[colIndex] === ".")
@@ -21,10 +21,9 @@ export class Galaxy {
           let expandableColsPassed = emptyCols.slice(0, j).filter(Boolean).length;
 
           this.galaxiesPositions.push({
-            x: i + expandableRowsPassed * multiplier,
-            y: j + expandableColsPassed * multiplier,
+            x: i + expandableRowsPassed * (multiplier - 1),
+            y: j + expandableColsPassed * (multiplier - 1),
           });
-          console.log(i, j, expandableColsPassed, expandableRowsPassed);
         }
       }
     }
