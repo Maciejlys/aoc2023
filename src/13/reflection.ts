@@ -1,54 +1,60 @@
 import { transpose } from "../utils/matrix";
 
 export class Reflection {
-  map: string[][];
-  rows: string[][] = [];
-  colums: string[][] = [];
+  map: string[];
 
   constructor(input: string) {
-    this.map = input.split(/\n/).map((line) => line.split(""));
-    this.rows = this.map;
-    this.colums = transpose(this.map);
+    this.map = input
+      .replace(/\./g, "0")
+      .replace(/#/g, "1")
+      .split(/\ns*\n/);
   }
 
-  private checkIfReflection(array: string[][], index: number) {
-    let offset = 1;
-    while (array[index] || array[index + offset]) {
-      if (
-        array[index] &&
-        array[index + offset] &&
-        JSON.stringify(array[index]) != JSON.stringify(array[index + offset])
-      ) {
-        return false;
-      }
-
-      index--;
-      offset += 2;
-    }
-
-    return true;
+  private transposeArray(arr: string[]): string[] {
+    return arr[0]
+      .split("")
+      .map((_, colIndex) => arr.map((row) => row[colIndex]))
+      .map((row) => row.join(""));
   }
 
-  private getReflectionIndex(array: string[][]) {
-    for (let index = 0; index < array.length; index++) {
-      if (JSON.stringify(array[index]) === JSON.stringify(array[index + 1])) {
-        if (this.checkIfReflection(array, index)) {
-          return index;
+  private findPointOfSymmetry(arr: number[]): number {
+    for (let i = 0; i < arr.length - 1; i++) {
+      let left = i;
+      let right = i + 1;
+      let foundMirror = true;
+      while (left >= 0 && right < arr.length) {
+        if (arr[left] != arr[right]) {
+          foundMirror = false;
+          break;
         }
+
+        left--;
+        right++;
+      }
+
+      if (foundMirror) {
+        return i + 1;
       }
     }
-    return 0;
+    return -1;
   }
 
   findReflections(): number {
-    let result = {
-      horizontal: 0,
-      vertical: 0,
-    };
+    let sum = 0;
+    for (const patternInput of this.map) {
+      const lines = patternInput.split("\n");
+      const rowNumbers = lines.map((line) => parseInt(line, 2));
+      const colNumbers = this.transposeArray(lines).map((line) => parseInt(line, 2));
 
-    result.horizontal = this.getReflectionIndex(this.rows);
-    result.vertical = this.getReflectionIndex(this.colums);
+      const rowSymmetryIndex = this.findPointOfSymmetry(rowNumbers);
+      if (rowSymmetryIndex >= 0) {
+        sum += 100 * rowSymmetryIndex;
+      } else {
+        const colSymmetryIndex = this.findPointOfSymmetry(colNumbers);
+        sum += colSymmetryIndex;
+      }
+    }
 
-    return result.horizontal ? (result.horizontal + 1) * 100 : result.vertical + 1;
+    return sum;
   }
 }
