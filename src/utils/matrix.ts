@@ -23,3 +23,5 @@ export const offsets: Record<Directions, Position> = {
   [Directions.Left]: { x: 0, y: -1 },
   [Directions.Right]: { x: 0, y: 1 },
 };
+
+export const transpose = <T>(array: T[][]) => array[0].map((_, c) => array.map((r) => r[c]));

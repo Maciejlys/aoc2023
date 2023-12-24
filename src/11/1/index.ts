@@ -1,5 +1,5 @@
-import { Galaxy } from "../galaxy";
+import { Cosmos } from "../cosmos";
 
 export default function testing(input: string) {
-  return new Galaxy(input).extractGalaxiesPositionAfterExpansion().getGalaxiesDistancesSum();
+  return new Cosmos(input).extractGalaxiesPositionAfterExpansion().getGalaxiesDistancesSum();
 }

@@ -1,6 +1,6 @@
 import { Position } from "../utils/matrix";
 
-export class Galaxy {
+export class Cosmos {
   private originalMap: string[][];
   private galaxiesPositions: Position[] = [];
 
