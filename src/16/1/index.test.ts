@@ -2,10 +2,10 @@ import { describe, expect, test } from "vitest";
 import fs from "fs";
 import testing from ".";
 
-describe("14/1", () => {
+describe("16/1", () => {
   test("should pass with example input", () => {
     const input = fs.readFileSync(`${__dirname}/../example.txt`, { encoding: "utf-8" });
-    const output = 136;
+    const output = 46;
 
     const result = testing(input);
 
@@ -21,7 +21,7 @@ describe("14/1", () => {
 
   test("should pass after refactor", () => {
     const input = fs.readFileSync(`${__dirname}/../input.txt`, { encoding: "utf-8" });
-    const output = 113078;
+    const output = 6361;
 
     const result = testing(input);
 
