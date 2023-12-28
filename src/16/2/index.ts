@@ -113,28 +113,20 @@ export default function testing(input: string) {
   const grid = input.split("\n").map((line) => line.split(""));
   const energized: number[] = [];
 
-  // for (let i = 0; i < grid.length; i++) {
-  //   for (let j = 0; j < grid[i].length; j++) {
-  //     if (i === 0) {
-  //       energized.push(solve(grid, { x: i, y: j, direction: Directions.Down, seen: new Set() }));
-  //     } else if (i === grid.length - 1) {
-  //       energized.push(solve(grid, { x: i, y: j, direction: Directions.Up, seen: new Set() }));
-  //     }
-  //     if (j === 0) {
-  //       energized.push(solve(grid, { x: i, y: j, direction: Directions.Right, seen: new Set() }));
-  //     } else if (j === grid[i].length - 1) {
-  //       energized.push(solve(grid, { x: i, y: j, direction: Directions.Left, seen: new Set() }));
-  //     }
-  //   }
-  // }
-
-  grid.forEach((line) => {
-    console.log(line.join(""));
-  });
-
-  console.log(solve(grid, { x: 0, y: 3, direction: Directions.Down, seen: new Set() }));
-
-  console.log(energized);
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (i === 0) {
+        energized.push(solve(grid, { x: j, y: i, direction: Directions.Down, seen: new Set() }));
+      } else if (i === grid.length - 1) {
+        energized.push(solve(grid, { x: j, y: i, direction: Directions.Up, seen: new Set() }));
+      }
+      if (j === 0) {
+        energized.push(solve(grid, { x: j, y: i, direction: Directions.Right, seen: new Set() }));
+      } else if (j === grid[i].length - 1) {
+        energized.push(solve(grid, { x: j, y: i, direction: Directions.Left, seen: new Set() }));
+      }
+    }
+  }
 
   return energized.reduce((acc, curr) => Math.max(curr, acc), 0);
 }

@@ -19,9 +19,9 @@ describe("16/2", () => {
     console.log(result);
   });
 
-  test.skip("should pass after refactor", () => {
+  test("should pass after refactor", () => {
     const input = fs.readFileSync(`${__dirname}/../input.txt`, { encoding: "utf-8" });
-    const output = 0;
+    const output = 6701;
 
     const result = testing(input);
 
