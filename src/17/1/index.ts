@@ -52,6 +52,7 @@ export default function testing(input: string) {
   const graph = new Graph();
   buildGraph(parsed, graph);
   // graph.printGraph();
+  console.log("testing");
 
   return 0;
 }
