@@ -1,3 +1,6 @@
-export default function testing(input:string) {
-  // Your code here
+import { findHeatLoss } from "..";
+
+export default function testing(input: string) {
+  const grid = input.split("\n").map((line) => line.split("").map(Number));
+  return findHeatLoss(grid, 10, 4);
 }

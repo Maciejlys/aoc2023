@@ -116,14 +116,42 @@ export default function testing(input: string) {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
       if (i === 0) {
-        energized.push(solve(grid, { x: j, y: i, direction: Directions.Down, seen: new Set() }));
+        energized.push(
+          solve(grid, {
+            x: j,
+            y: i,
+            direction: Directions.Down,
+            seen: new Set(),
+          }),
+        );
       } else if (i === grid.length - 1) {
-        energized.push(solve(grid, { x: j, y: i, direction: Directions.Up, seen: new Set() }));
+        energized.push(
+          solve(grid, {
+            x: j,
+            y: i,
+            direction: Directions.Up,
+            seen: new Set(),
+          }),
+        );
       }
       if (j === 0) {
-        energized.push(solve(grid, { x: j, y: i, direction: Directions.Right, seen: new Set() }));
+        energized.push(
+          solve(grid, {
+            x: j,
+            y: i,
+            direction: Directions.Right,
+            seen: new Set(),
+          }),
+        );
       } else if (j === grid[i].length - 1) {
-        energized.push(solve(grid, { x: j, y: i, direction: Directions.Left, seen: new Set() }));
+        energized.push(
+          solve(grid, {
+            x: j,
+            y: i,
+            direction: Directions.Left,
+            seen: new Set(),
+          }),
+        );
       }
     }
   }
